@@ -70,10 +70,12 @@
             if (ordering == "")
                 ordering = "asc";
             if (ordering == "asc") {
-                $(this).append("<i class='fa fa-2x fa-sort-alpha-asc'></i>");
+            //    $(this).append("<i class='fa fa-2x fa-sort-alpha-asc'></i>");
+				  $(this).append("<i class='fa fa-sort-alpha-asc'></i>");
 
             } else {
-                $(this).append("<i class='fa fa-2x fa-sort-alpha-desc'></i>");
+//                $(this).append("<i class='fa fa-2x fa-sort-alpha-desc'></i>");
+				 $(this).append("<i class='fa  fa-sort-alpha-desc'></i>");
             }
             $(this).click(function () {
                 var sections = $("[data-type='accordion-section']");

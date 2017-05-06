@@ -7,14 +7,17 @@
     <title>Event  Demo</title>
     
 	
-	<script src="jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="accordeon.js" type="text/javascript"></script>
     <script src="https://nagard.github.io/accextern.js" type="application/javascript"></script>
 	<link href="styles.css" rel="stylesheet">
 
 	
 	<link href="event.css" rel="stylesheet">
+	<!-- Bootstrap core CSS -->
+    <link href="bootstrap.min.css" rel="stylesheet">
 	
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
    <style>
 
@@ -27,24 +30,31 @@
     </head>
 
     <body>
-    <div id="jquery-script-menu">
-
-</div>
-<div class="calendar-event-details__description">
-<h1 style="margin-top:15px;">Event  Demo</h1>
-
-<input type="text" placeholder="search in list" name="search" id="search" data-type="accordion-search">
-<br>
-<br>
-Filter List: <select name="filter" id="filter" data-type="accordion-filter">
-      <option value="default">all</option>
-      <option value="type1">Type 1</option>
-      <option value="type2">Type 2</option>
-    </select>
 	
 	
-</div>
-<section id="accordion">
+	
+	 <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+	<div style="margin-left:15px">	
+		 <input type="text" placeholder="search in list" name="search" id="search" data-type="accordion-search">
+
+		Filter List: <select name="filter" id="filter" data-type="accordion-filter">
+			  <option value="default">all</option>
+			  <option value="type1">Type 1</option>
+			  <option value="type2">Type 2</option>
+			</select>
+	</div>	
+
+
+<div style="margin-left:15px;margin-top:15px;font-size:1em" id="btn-div">
+   
+      <button  data-type="accordion-ordering" ordering="asc" class="btn-ordering"></button>
+      <button data-type="accordion-ordering" ordering="desc" class="btn-ordering"></button>
+    </div>	
+    </nav>
+
+
+<section style="margin-left:15px;margin-top:80px;margin-right:15px;" id="accordion">
 
 
 	  
@@ -54,10 +64,7 @@ Filter List: <select name="filter" id="filter" data-type="accordion-filter">
 </section>
 	
 	
-<div style="margin-left:15px;margin-top:15px;" id="btn-div">
-      <button data-type="accordion-ordering" ordering="asc" class="btn-ordering"></button>
-      <button data-type="accordion-ordering" ordering="desc" class="btn-ordering"></button>
-    </div>
+
 <script>
         $(document).ready(function () {
 		
