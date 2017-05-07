@@ -9,7 +9,8 @@
 	
 	<script src="jquery.min.js"></script>
     <script src="accordeon.js" type="text/javascript"></script>
-    <script src="accextern.js" type="application/javascript"></script>
+	 <script src="accextern.js" type="text/javascript"></script>
+  
 	<link href="styles.css" rel="stylesheet">
 
 	
@@ -68,6 +69,21 @@
 	
 
 <script>
+
+
+function qs(key) {
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    return vars[key];
+}
+
+
         $(document).ready(function () {
 		
 		$('#accordion').html(test1+test2);
@@ -76,6 +92,13 @@
 		
             $("#accordion").accordion();
         });
+		
+		
+		
+		
+		
+		
+		
     </script>
 
 </body>
