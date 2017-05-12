@@ -25,6 +25,10 @@
                     $("[data-type='accordion-section-body']").each(function () {
                         $(this).hide(duration);
                     });
+					
+					//refresh iframe when click accordeon element
+					document.getElementById("frame1").src=document.getElementById("frame1").src;
+				
                     content.show(duration);
                     title.find("i").addClass("fa-minus-circle");
                     title.find("i").removeClass("fa-plus-circle");
@@ -78,6 +82,7 @@
 				 $(this).append("<i class='fa  fa-sort-alpha-desc'></i>");
             }
             $(this).click(function () {
+				
                 var sections = $("[data-type='accordion-section']");
                 for (i = 0; i < sections.length; i++) {
                     for (x = 0; x < sections.length; x++) {
