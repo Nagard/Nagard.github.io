@@ -7,6 +7,9 @@
         if (duration == null)
             duration = 200;
         this.find("[data-type='accordion-section']").each(function () {
+			
+			
+			
             $(this).attr("draggable", "true");
             var content = $(this).find("[data-type='accordion-section-body']");
             var title = $(this).find("[data-type='accordion-section-title']");
@@ -26,8 +29,28 @@
                         $(this).hide(duration);
                     });
 					
+					NodeList.prototype.forEach = HTMLCollection.prototype.forEach = Array.prototype.forEach;
+					var listiframe = document.querySelectorAll('iframe');
+				    
+					listiframe.forEach(function (tag, i) {
+						
+						//console.log(i, tag);
+						try {
+						document.getElementById("frame"+i).src=document.getElementById("frame"+i).src;
+						console.log(i);
+						}
+						catch (err){
+							
+						}
+					});
+					
+					
+					
 					//refresh iframe when click accordeon element
-					document.getElementById("frame1").src=document.getElementById("frame1").src;
+					//console.log(document.getElementsByName("iframe-X"));
+					
+					
+					// document.getElementById("frame1").src=document.getElementById("frame1").src;
 				
                     content.show(duration);
                     title.find("i").addClass("fa-minus-circle");
