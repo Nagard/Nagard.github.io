@@ -1,0 +1,371 @@
+var firepad = null, userList = null, codeMirror = null;
+var check = false;
+var daten;
+var myArray = new Array();
+// Rename Experiment
+function moveFbRecord(oldRef, newRef, id) {
+	oldRef.once('value', function (snap) {
+		newRef.set(snap.val(), function (error) {
+			if (!error) {
+				oldRef.remove();
+				myArray = new Array();
+				fillArray();
+				showMenue(id);
+			} else if (typeof(console) !== 'undefined' && console.error) {
+				console.error(error);
+			}
+		});
+	});
+}
+// *****************
+function removeFbRecord(oldRef, newRef, id) {
+	oldRef.once('value', function (snap) {
+		newRef.set(snap.val(), function (error) {
+			if (!error) {
+				oldRef.remove();
+				myArray = new Array();
+				fillArray();
+				showMenue(id);
+			} else if (typeof(console) !== 'undefined' && console.error) {
+				console.error(error);
+			}
+		});
+	});
+}
+// *****************
+function beep() {
+	var snd = new Audio(
+			"data:audio/wav;base64,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qJrx4KOQjahZxWbcZgztj2c49nKmkId44S71j0c8eV9yDK6uPRzx5X18eDvjvQ6yKo9ZSS6l//8elePK/Lf//IInrOF/FvDoADYAGBMGb7FtErm5MXMlmPAJQVgWta7Zx2go+8xJ0UiCb8LHHdftWyLJE0QIAIsI+UbXu67dZMjmgDGCGl1H+vpF4NSDckSIkk7Vd+sxEhBQMRU8j/12UIRhzSaUdQ+rQU5kGeFxm+hb1oh6pWWmv3uvmReDl0UnvtapVaIzo1jZbf/pD6ElLqSX+rUmOQNpJFa/r+sa4e/pBlAABoAAAAA3CUgShLdGIxsY7AUABPRrgCABdDuQ5GC7DqPQCgbbJUAoRSUj+NIEig0YfyWUho1VBBBA//uQZB4ABZx5zfMakeAAAAmwAAAAF5F3P0w9GtAAACfAAAAAwLhMDmAYWMgVEG1U0FIGCBgXBXAtfMH10000EEEEEECUBYln03TTTdNBDZopopYvrTTdNa325mImNg3TTPV9q3pmY0xoO6bv3r00y+IDGid/9aaaZTGMuj9mpu9Mpio1dXrr5HERTZSmqU36A3CumzN/9Robv/Xx4v9ijkSRSNLQhAWumap82WRSBUqXStV/YcS+XVLnSS+WLDroqArFkMEsAS+eWmrUzrO0oEmE40RlMZ5+ODIkAyKAGUwZ3mVKmcamcJnMW26MRPgUw6j+LkhyHGVGYjSUUKNpuJUQoOIAyDvEyG8S5yfK6dhZc0Tx1KI/gviKL6qvvFs1+bWtaz58uUNnryq6kt5RzOCkPWlVqVX2a/EEBUdU1KrXLf40GoiiFXK///qpoiDXrOgqDR38JB0bw7SoL+ZB9o1RCkQjQ2CBYZKd/+VJxZRRZlqSkKiws0WFxUyCwsKiMy7hUVFhIaCrNQsKkTIsLivwKKigsj8XYlwt/WKi2N4d//uQRCSAAjURNIHpMZBGYiaQPSYyAAABLAAAAAAAACWAAAAApUF/Mg+0aohSIRobBAsMlO//Kk4soosy1JSFRYWaLC4qZBYWFRGZdwqKiwkNBVmoWFSJkWFxX4FFRQWR+LsS4W/rFRb/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////VEFHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAU291bmRib3kuZGUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMjAwNGh0dHA6Ly93d3cuc291bmRib3kuZGUAAAAAAAAAACU=");
+	snd.play();
+
+	console.log("Keys:");
+
+	showMenue("");
+}
+
+function joinFirepadForHash() {
+
+	if (firepad) {
+
+		// Clean up.
+		firepad.dispose();
+		userList.dispose();
+		$('.CodeMirror').remove();
+	}
+
+	var id = window.location.hash.replace(/#/g, '') || randomString(10);
+	// var url = window.location.toString().replace(/#.*/, '') + '#' + id;
+
+
+	// Tests to see if /users/<userId> has any data.
+	function checkIfUserExists(userId) {
+		console.log("checkIfUserExists " + userId);
+		var usersRef = new Firebase('https://glowing-fire-1944.firebaseio.com/');
+		usersRef.child(userId).once('value', function (snapshot) {
+			var exists = (snapshot.val() !== null);
+			console.log("Check " + exists);
+			if (exists == false) {
+				console.log("Bin hier");
+				// id="Need a Channel";
+				document.getElementById('channelName').innerHTML = id
+					 + " Channel not found!!!";
+				$(".deletebtn").hide();
+				$(".renamebtn").hide();
+				fillArray();
+				id = "";
+				showMenue("");
+			}
+			if (exists == true) {
+				var url = window.location.toString().replace(/#.*/, '') + '#' + id;
+				console.log(id);
+				var firepadRef = new Firebase('https://glowing-fire-1944.firebaseio.com/')
+					.child(id);
+				// var firepadRef = new
+				// Firebase('https://firepad.firebaseio.com/demo').child(id);
+
+				var userId = firepadRef.push().name(); // Just a random ID.
+				codeMirror = CodeMirror(document.getElementById('firepad'), {
+						lineWrapping : true
+					});
+				codeMirror.on("change", function () {
+					beep();
+					// var d = new Date();
+
+					// var datestring = d.getDate() + "-" + (d.getMonth()+1) + "-" +
+					// d.getFullYear() + " " +
+					// d.getHours() + ":" + d.getMinutes();
+					datestring = "read confirm";
+					document.getElementById('lastChange').innerHTML = datestring;
+					document.getElementById('lastChange').style.color = "white";
+					document.getElementById('lastChange').style.background = "red";
+				});
+
+				firepad = Firepad.fromCodeMirror(firepadRef, codeMirror, {
+						richTextToolbar : true,
+						richTextShortcuts : true,
+						userId : userId
+					});
+				userList = FirepadUserList.fromDiv(firepadRef.child('users'), document
+						.getElementById('firepad-userlist'), userId);
+
+				firepad.on('ready', function () {
+					if (firepad.isHistoryEmpty()) {
+						// firepad.setText('Ei gute!\n\nFolgenden Link kannst Du mit
+						// Freunden teilen.');
+						// firepad.setHtml('Das ist der Text');
+						document.getElementById('firepad').addEventListener("onkeydown",
+							beep);
+						firepad.setHtml('Hier den Text eintragen!');
+						//Test Bild 
+						firepad.insertEntity('img', { 
+    'src' : 'https://firepad.io/images/fork_on_github.png',
+  });
+//Ende Test Bild
+						// firepad.insertEntity('img', { src:
+						// 'https://image.jimcdn.com/app/cms/image/transf/dimension=820x10000:format=png/path/sb8374994015f1385/image/i09ee9d795b2b2e52/version/1452799232/image.png'
+						// });
+					}
+
+					ensurePadInList(id);
+					buildPadList();
+
+				});
+
+				codeMirror.focus();
+
+				// id anzeigen
+
+				document.getElementById('channelName').innerHTML = id;
+				//
+
+				window.location = url;
+				$('#url').val(url);
+				$("#url").on('click', function (e) {
+					$(this).focus().select();
+					e.preventDefault();
+					return false;
+				});
+
+			}
+
+		});
+	}
+	if (id != "") {
+		checkIfUserExists(id);
+		$(".deletebtn").show();
+		$(".renamebtn").show();
+	} else {
+		checkIfUserExists("not");
+		document.getElementById('channelName').innerHTML = "Missing Channel Name";
+		$(".deletebtn").hide();
+		$(".renamebtn").hide();
+
+	}
+	console.log("Liste:");
+	// Get a database reference to our posts
+	fillArray();
+	showMenue();
+
+}
+
+function fillArray() {
+
+	var x = new Firebase('https://glowing-fire-1944.firebaseio.com/');
+	// Attach an asynchronous callback to read the data at our posts reference
+	console.log("Beim Array befüllen");
+	
+	x.on("value", function (snapshot) {
+		console.log("Beim Array befüllen x.on('value', function (snapshot)");
+		myArray = {};
+		snapshot.forEach(function (userSnap) {
+			console.log(userSnap.key());
+			myArray[userSnap.key()] = userSnap.key();
+
+		});
+		showMenue("");
+		
+
+	}, function (errorObject) {
+		console.log("The read failed: " + errorObject.code);
+	});
+
+}
+
+function padListEnabled() {
+	return (typeof localStorage !== 'undefined' && typeof JSON !== 'undefined'
+		 && localStorage.setItem && localStorage.getItem && JSON.parse && JSON.stringify);
+}
+
+function ensurePadInList(id) {
+	if (!padListEnabled()) {
+		return;
+	}
+	var list = JSON.parse(localStorage.getItem('demo-pad-list') || "{ }");
+	if (!(id in list)) {
+		var now = new Date();
+		var year = now.getFullYear(),
+		month = now.getMonth() + 1,
+		day = now
+			.getDate();
+		var hours = now.getHours(),
+		minutes = now.getMinutes();
+		if (hours < 10) {
+			hours = '0' + hours;
+		}
+		if (minutes < 10) {
+			minutes = '0' + minutes;
+		}
+
+		list[id] = [year, month, day].join('/') + ' ' + hours + ':' + minutes;
+
+		localStorage.setItem('demo-pad-list', JSON.stringify(list));
+		buildPadList();
+	}
+}
+
+function buildPadList() {
+	if (!padListEnabled()) {
+		return;
+	}
+	$('#my-pads-list').empty();
+
+	var list = JSON.parse(localStorage.getItem('demo-pad-list') || '{ }');
+	for (var id in list) {
+		$('#my-pads-list').append(
+			$('<div/>').addClass('my-pads-item').append(
+				makePadLink(id, list[id])));
+	}
+}
+
+function makePadLink(id, name) {
+	// ursprünglich .text(name)
+	return $('<a/>').text(id).on(
+		'click',
+		function () {
+		window.location = window.location.toString().replace(/#.*/, '')
+			 + '#' + id;
+		$('#my-pads-list').hide();
+		return false;
+	});
+}
+
+function randomString(length) {
+
+	return "";
+}
+
+$(window).on('ready', function () {
+
+	joinFirepadForHash();
+    change();
+	setTimeout(function () {
+		$(window).on('hashchange', joinFirepadForHash);
+	}, 0);
+});
+
+$(document).ready(function () {
+	$(".dropbtn").hover(function (e) {
+		$("#keys").show();
+		$("#top-content").hide();
+	});
+
+	$(".renamebtn").click(function (e) {
+		console.log("----------------------------------")
+		console.log("click auf renamebtn");
+		var id = window.location.hash.replace(/#/g, '')
+			console.log("click");
+		alt = new Firebase('https://glowing-fire-1944.firebaseio.com/').child(id);
+		var newID = $("#newName").val();
+		neu = new Firebase('https://glowing-fire-1944.firebaseio.com/' + newID);
+		moveFbRecord(alt, neu, id);
+		document.getElementById('channelName').innerHTML = newID;
+		var url = window.location.toString().replace(/#.*/, '') + '#' + newID;
+		window.location = url;
+		$('#url').val(url);
+		$("#newName").val("newName");
+
+		var change = new Firebase('https://glowing-fire-1944.firebaseio.com/change');
+		change.remove();
+
+		myArray = new Array();
+		fillArray();
+		showMenue("");
+
+	});
+
+	$("#keys").click(function (e) {
+
+		console.log("click");
+		$("#top-content").show();
+	});
+
+	$("#keys").mouseleave(function (e) {
+
+		$("#top-content").show();
+	});
+
+	$("#top-bg-tile").hover(function (e) {
+
+		$("#top-content").show();
+	});
+
+	$(".deletebtn").hover(function (e) {
+
+		$("#keys").hide();
+		$("#top-content").show();
+	});
+	$(".renamebtn").hover(function (e) {
+
+		$("#keys").hide();
+		$("#top-content").show();
+	});
+
+	$(".deletebtn").click(function (e) {
+		var id = window.location.hash.replace(/#/g, '')
+
+			console.log("delete click");
+		var deleteRef = new Firebase('https://glowing-fire-1944.firebaseio.com/').child(id);
+		removeFbRecord(deleteRef, deleteRef, id)
+		//	fillArray();
+		//	showMenue(id);
+
+		document.getElementById('channelName').innerHTML = id + " Channel deleted!!!";
+		$("#top-content").hide();
+		// Clean up.
+
+
+		//	$("#top-content").show();
+	});
+
+});
+
+
+// change();
+
+function showMenue(filter) {
+
+	var menue = "";
+
+	for (var i in myArray) {
+		if (i != filter && i != "change") {
+			console.log("bin in showMenue()" + i)
+			menue = menue + "<a href='#" + i + "' >" + myArray[i] + "</a> ";
+		}
+	}
+
+	document.getElementById('keys').innerHTML = menue;
+}
+
+
+function change(){
+	console.log("VOR CHANGE *************************************");
+var changeRef = new Firebase('https://glowing-fire-1944.firebaseio.com/');
+changeRef.once('child_removed', function (snapshot) {
+
+	console.log("CHANGE *************************************");
+	myArray = new Array();
+	fillArray();
+	showMenue("change");
+});
+	
+}

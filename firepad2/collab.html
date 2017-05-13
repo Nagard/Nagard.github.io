@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="eneCMS">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Collabpad</title>
+<meta name="description"
+	content="Online notepad multiple people can work on at once">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1,user-scalable=no">
+<link rel="icon" type="image/png" href="/images/icon.png">
+<link rel="stylesheet" href="styles/main.min.css">
+<meta property="og:title" content="Collabpad">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://collabpad.io">
+<meta property="og:image"
+	content="https://collabpad.io/images/social.jpg">
+<meta property="og:description"
+	content="Online notepad multiple people can work on at once">
+<meta property="og:site_name" content="Collabpad">
+<meta property="fb:app_id" content="">
+<meta name="twitter:card"
+	content="Online notepad multiple people can work on at once">
+<meta name="twitter:site" content="@__everandever__">
+<meta name="twitter:title" content="Collabpad">
+<meta name="twitter:description"
+	content="Online notepad multiple people can work on at once">
+<meta name="twitter:creator" content="@__everandever__">
+<meta name="twitter:image"
+	content="https://collabpad.io/images/social.jpg">
+<script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.10.0/codemirror.js"></script>
+<script src="https://cdn.firebase.com/libs/firepad/1.3.0/firepad.min.js"></script>
+<script>
+	if (window.location.hostname.indexOf(".dev") === -1) {
+		(function(i, s, o, g, r, a, m) {
+			i['GoogleAnalyticsObject'] = r;
+			i[r] = i[r] || function() {
+				(i[r].q = i[r].q || []).push(arguments)
+			}, i[r].l = 1 * new Date();
+			a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+			a.async = 1;
+			a.src = g;
+			m.parentNode.insertBefore(a, m)
+		})(window, document, 'script',
+				'//www.google-analytics.com/analytics.js', 'ga');
+
+		ga('create', 'UA-74309066-3', 'auto');
+		ga('send', 'pageview');
+	}
+</script>
+</head>
+<body>
+	<!--[if lt IE 10]><p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p><![endif]-->
+	<div class="collabpad--background">
+		<div class="collabpad--message" style="display: none">Slack Bot
+			installed successfully!</div>
+	</div>
+	<div class="collabpad--pad" id="firepad"></div>
+	<div class="collabpad--header">
+		<div class="collabpad--header--content">
+			<div class="collabpad--header--leftside">
+				<a href="/" class="collabpad--header--logo"></a>
+				<ul class="collabpad--header--menu">
+					<li><a href="/slack">Install Slack Bot</a></li>
+					<li><a href="http://everandever.co" target="_blank">By
+							Ever &amp; Ever</a></li>
+				</ul>
+			</div>
+			<a onclick="displayPads()" id="my-pads" class="collabpad--recent">View
+				recent</a>
+			<div class="collabpad--recent--list" id="my-pads-list"></div>
+		</div>
+	</div>
+	<div class="collabpad--controls">
+		<div class="collabpad--controls--wrap">
+			<ul class="collabpad--controls--styles">
+				<li class="bold js-action-bold">B</li>
+				<li class="italic js-action-italic">I</li>
+				<li class="strikethrough js-action-strike">S</li>
+				<li class="styles__colour colour__green js-action-color"
+					data-color="#2ecc71"></li>
+				<li class="styles__colour colour__red js-action-color"
+					data-color="#e74c3c"></li>
+			</ul>
+			<div class="collab-pad--online" id="firepad-userlist"></div>
+		</div>
+	</div>
+	<script src="scripts/vendor.min.js"></script>
+	<script src="scripts/app.min.js"></script>
+</body>
+</html>

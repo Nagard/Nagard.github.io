@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Terminfinder</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.10.0/codemirror.css" />
+  <link rel="stylesheet" href="firepad.css" />
+  <link rel="stylesheet" href="firepad-userlist.css" />
+  <link rel="stylesheet" href="demo.css" />
+  
+
+</head>
+
+<body>
+<div id="fb-root"></div>
+
+  <div id="top">
+    <div id="top-bg-tile">
+      <div id="top-content">
+       <br>
+	   
+      <div class="last">
+	      
+		<a  onclick="displayPads()" title="Channel-List" >( .. )</a> <a  style="text-decoration:none" href="./" id="create-pad" title="Create Channel">( + )</a>
+		<br><br>
+		<a  id="channelName" ></a> <a title="Last Update" onMouseOver="this.innerHTML='';this.style='color:black;background-color: white;'" id="lastChange" ></a> 		
+	</div>
+	<div id="my-pads-list">
+        </div>
+        <div id="firepad-container">
+          <div id="firepad-userlist"></div>
+        
+		  <div id="firepad"></div>
+        </div>
+   
+        
+      </div>
+    </div>
+  </div>
+<!--  <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+ -->  <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.10.0/codemirror.js"></script>
+  <script src="https://cdn.firebase.com/libs/firepad/1.3.0/firepad.min.js"></script>
+  <script src="firepad-userlist.js"></script>
+  <script src="https://www.firepad.io/js/jquery-1.9.1.min.js"></script>
+  <script type="text/javascript" src="demoChangeName.js"></script>
+
+
+<script type="text/javascript">
+    function displayPads() {
+      $('#my-pads-list').toggle();
+    }
+</script>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover();   
+});
+</body>
+</html>
