@@ -1,3 +1,15 @@
+function draw(cv,text,color) {
+	
+  console.log("cv "+cv);	
+  console.log("text "+text);	
+  var ctx = document.getElementById(cv).getContext('2d');
+  ctx.font = '20px';
+  ctx.fillStyle=color;    // color of fill
+  ctx.fillRect(10, 40, 140, 160); // create rectangle  
+ // ctx.strokeText(text, 15, 50);
+}
+
+
 var dataStore = "";
 const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
@@ -25,6 +37,8 @@ $.ajax({
 console.log("haha");
 
 var test1 = '';
+const mySet = new Set()
+
 
 //Hack mit -1, da ein Leersatz mitkommt. JETZT NICHT MEHR NOTWENDIG
 for (let i = 0; i < dataStore.length ; i++) {
@@ -33,9 +47,30 @@ for (let i = 0; i < dataStore.length ; i++) {
   //Hack da cuba Datumswert so ausliefert
   // Von: 'Date(2019,8,27)',
   var d = eval("new "+dataStore[i].Von);
-  console.log(monthNames[d.getMonth()]);
-  test1 = test1 + '<div data-type="accordion-section" data-filter="' + dataStore[i].Kategorie + '"><div data-type="accordion-section-title"><div class="calendar-list-event col-md-12 clickable" data-reactid=".0.0.0.5.1:$0.0">			<div class="row" data-reactid=".0.0.0.5.1:$0.0.0">				<div class="calendar-list-event__date col-xs-2 col-sm-1" data-reactid=".0.0.0.5.1:$0.0.0.0">					<div class="calendar-list-event__date__day" data-reactid=".0.0.0.5.1:$0.0.0.0.0">' + d.getDate() + '</div>					<div class="calendar-list-event__date__month" data-reactid=".0.0.0.5.1:$0.0.0.0.1">' + monthNames[d.getMonth()] + '</div>				</div>				<div class="col-sm-11 col-xs-10" data-reactid=".0.0.0.5.1:$0.0.0.1">					<img class="calendar-list-event__image" src="' + dataStore[i].Image + '" data-reactid=".0.0.0.5.1:$1.0.0.1.0">	<div class="calendar-list-event__details calendar-list-event__details--with-thumbnail" data-reactid=".0.0.0.5.1:$0.0.0.1.1">							<div class="calendar-list-event__name" data-reactid=".0.0.0.5.1:$0.0.0.1.1.0">' + dataStore[i].Thema + '</div>							<div class="calendar-list-event__short-description" data-reactid=".0.0.0.5.1:$0.0.0.1.1.1">' + dataStore[i].Kategorie + '</div>						</div>					</div>				</div>			</div> 		</div>		<div  class="accordion-content" data-type="accordion-section-body">			<div class="calendar-event-details__description col-md-12" data-reactid=".0.0.0.5.1:$1.1.0.0.1">				<div class="calendar-event-details__description__title" data-reactid=".0.0.0.5.1:$1.1.0.0.1.0">Details</div>				<div  data-reactid=".0.0.0.5.1:$1.1.0.0.1.1"> ' + dataStore[i].Details + '  </div>									</div>								</div></div>';
-}
+ // console.log(monthNames[d.getMonth()]);
+  
+ test1 = test1 + '<div data-type="accordion-section" data-filter="' + dataStore[i].Kategorie + '"><div data-type="accordion-section-title"><div class="calendar-list-event col-md-12 clickable" data-reactid=".0.0.0.5.1:$0.0">			<div class="row" data-reactid=".0.0.0.5.1:$0.0.0">				<div class="calendar-list-event__date col-xs-2 col-sm-1" data-reactid=".0.0.0.5.1:$0.0.0.0">					<div class="calendar-list-event__date__day" data-reactid=".0.0.0.5.1:$0.0.0.0.0">' + d.getDate() + '</div>					<div class="calendar-list-event__date__month" data-reactid=".0.0.0.5.1:$0.0.0.0.1">' + monthNames[d.getMonth()] + '</div>				</div>				<div class="col-sm-11 col-xs-10" data-reactid=".0.0.0.5.1:$0.0.0.1">					<canvas class="calendar-list-event__image" id="DC'+i+'" width="70" height="250"></canvas> <script>draw("DC'+i+'","'+dataStore[i].Kategorie +'","'+dataStore[i].Color +'");</script>	<div class="calendar-list-event__details calendar-list-event__details--with-thumbnail" data-reactid=".0.0.0.5.1:$0.0.0.1.1">							<div class="calendar-list-event__name" data-reactid=".0.0.0.5.1:$0.0.0.1.1.0">' + dataStore[i].Thema + '</div>							<div class="calendar-list-event__short-description" data-reactid=".0.0.0.5.1:$0.0.0.1.1.1">' + dataStore[i].Kategorie + '</div>						</div>					</div>				</div>			</div> 		</div>		<div  class="accordion-content" data-type="accordion-section-body">			<div class="calendar-event-details__description col-md-12" data-reactid=".0.0.0.5.1:$1.1.0.0.1">				<div class="calendar-event-details__description__title" data-reactid=".0.0.0.5.1:$1.1.0.0.1.0">Details</div>				<div  data-reactid=".0.0.0.5.1:$1.1.0.0.1.1"> ' + dataStore[i].Details + '  </div>									</div>								</div></div>';
+ // test1 = test1 + '<div data-type="accordion-section" data-filter="' + dataStore[i].Kategorie + '"><div data-type="accordion-section-title"><div class="calendar-list-event col-md-12 clickable" data-reactid=".0.0.0.5.1:$0.0">			<div class="row" data-reactid=".0.0.0.5.1:$0.0.0">				<div class="calendar-list-event__date col-xs-2 col-sm-1" data-reactid=".0.0.0.5.1:$0.0.0.0">					<div class="calendar-list-event__date__day" data-reactid=".0.0.0.5.1:$0.0.0.0.0">' + d.getDate() + '</div>					<div class="calendar-list-event__date__month" data-reactid=".0.0.0.5.1:$0.0.0.0.1">' + monthNames[d.getMonth()] + '</div>				</div>				<div class="col-sm-11 col-xs-10" data-reactid=".0.0.0.5.1:$0.0.0.1">					<img class="calendar-list-event__image" src="' + dataStore[i].Image + '" data-reactid=".0.0.0.5.1:$1.0.0.1.0">	<div class="calendar-list-event__details calendar-list-event__details--with-thumbnail" data-reactid=".0.0.0.5.1:$0.0.0.1.1">							<div class="calendar-list-event__name" data-reactid=".0.0.0.5.1:$0.0.0.1.1.0">' + dataStore[i].Thema + '</div>							<div class="calendar-list-event__short-description" data-reactid=".0.0.0.5.1:$0.0.0.1.1.1">' + dataStore[i].Kategorie + '</div>						</div>					</div>				</div>			</div> 		</div>		<div  class="accordion-content" data-type="accordion-section-body">			<div class="calendar-event-details__description col-md-12" data-reactid=".0.0.0.5.1:$1.1.0.0.1">				<div class="calendar-event-details__description__title" data-reactid=".0.0.0.5.1:$1.1.0.0.1.0">Details</div>				<div  data-reactid=".0.0.0.5.1:$1.1.0.0.1.1"> ' + dataStore[i].Details + '  </div>									</div>								</div></div>';
+
+  
+  //Set befüllen
+  mySet.add(dataStore[i].Kategorie);
+  }
+  
+//Aus dem Set ein sortierbares Array produzieren  
+var sortedArray=  Array.from(mySet).sort();
+  
+//  for (const k of s.keys()) {
+//	for (const k of sortedArray) {
+//		console.log(k)
+//}
+//Dropdown befüllen
+$.each(sortedArray, function(val, text) {
+		$('#filter').append( $('<option></option>').val(text).html(text) )
+	}); 
+
+
+
 
 test2 = '';
 
