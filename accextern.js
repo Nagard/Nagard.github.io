@@ -9,11 +9,27 @@ function draw(cv,text,color) {
  // ctx.strokeText(text, 15, 50);
 }
 
-
+// URL-Parameter abfragen
+    function getUrlParameterByName(name, url) {
+      if (!url) url = window.location.href;
+      name = name.replace(/[\[\]]/g, "\\$&");
+      var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"), results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+	
+	
+	
 var dataStore = "";
 const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
+
+
+var gsheet = getUrlParameterByName('gsheet', window.location.href) || localStorage.getItem("gsheet");
+//	console.log("gsheet "+gsheet);
+	localStorage.setItem('gsheet', gsheet);
 
 $.ajax({
   type: 'GET',
@@ -22,7 +38,8 @@ $.ajax({
 
   // url: 'http://localhost:3000/2PACX-1vTKLd22vDKaau6S2nLYMo2BJAG0C_8Udv6QDbV5sL3NLIFhcvO10ICDFcOpOW0RXrBtPq87MV7Ak_cq',
 //  url: 'http://localhost:3000/1WV-qIba3BuAVLdeGw7uDOtA6IGe4LVmDato_XAn1Hn4',
-    url: 'https://jodler.herokuapp.com/1WV-qIba3BuAVLdeGw7uDOtA6IGe4LVmDato_XAn1Hn4',
+//  url: 'https://jodler.herokuapp.com/1WV-qIba3BuAVLdeGw7uDOtA6IGe4LVmDato_XAn1Hn4',
+    url: 'https://jodler.herokuapp.com/'+gsheet,
 //hier kommt sheet.best
   //url: 'https://sheet.best/api/sheet/fc2e6be0-adaf-4228-adce-279d0408c6c6',
 
