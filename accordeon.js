@@ -126,6 +126,7 @@
             });
         });
         $("[data-type='accordion-filter']").change(function () {
+		
             var selected = $(this).select().val();
             $("[data-type='accordion-section']").each(function () {
                 $(this).show();

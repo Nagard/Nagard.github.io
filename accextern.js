@@ -9,6 +9,37 @@ function draw(cv,text,color) {
  // ctx.strokeText(text, 15, 50);
 }
 
+
+function chooseDropDown(index) {
+	//console.log(index);	
+
+ 
+	
+	$('#filter option')[index-1].selected = true;
+	// console.log(text);	
+
+ 
+//	var el = document.getElementsByTagName('select')[0]; 
+	// assuming el is not null, select 4th option
+//	el.selectedIndex = index;
+	//console.log("changed "+$("#filter").find('option:selected').val());
+	 $("[data-type='accordion-filter']").change();
+	
+	
+	
+	
+	
+//-------------
+	
+	
+//----------------	
+
+ 
+}
+
+
+
+
 // URL-Parameter abfragen
     function getUrlParameterByName(name, url) {
       if (!url) url = window.location.href;
@@ -88,9 +119,18 @@ var sortedArray=  Array.from(mySet).sort();
 //		console.log(k)
 //}
 //Dropdown befüllen
+
+// counter=1 steht für all
+var counter = 2;
 $.each(sortedArray, function(val, text) {
 		$('#filter').append( $('<option></option>').val(text).html(text) )
-	}); 
+		
+//		$('#ullinks').append( $('<li></li>').html('<a onclick="chooseDropDown(\''+counter+'\');" href="#'+text+'" >'+text+'</a>') )
+
+		$('#ullinks').append( $('<li></li>').html('<a onclick="chooseDropDown('+counter+');" href="#'+text+'" >'+text+'</a>') )
+
+		counter++;
+		}); 
 
 
 
