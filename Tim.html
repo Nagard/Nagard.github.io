@@ -30,12 +30,12 @@ body  {
 	  $.getJSON("https://jodler.herokuapp.com/10lrYrMbl3_c8xKQsz_juAiVTTZJbTQseaByuuZxe33s", function(result){
 	//  $.getJSON("http://localhost:3001/1WV-qIba3BuAVLdeGw7uDOtA6IGe4LVmDato_XAn1Hn4", function(result){
 		$.each(result, function(i, field){
-      		$("button#yeart").text(field.YearT + " ");
-		    $("button#montht").text(field.MonthT + " ");
-			$("button#dayt").text(field.DayT + " ");
-			$("button#yearc").text(field.YearC + " ");
-		    $("button#monthc").text(field.MonthC + " ");
-			$("button#dayc").text(field.DayC + " ");
+      		$("div#yeart").text(field.YearT + " ");
+		    $("div#montht").text(field.MonthT + " ");
+			$("div#dayt").text(field.DayT + " ");
+			$("div#yearc").text(field.YearC + " ");
+		    $("div#monthc").text(field.MonthC + " ");
+			$("div#dayc").text(field.DayC + " ");
       });
     });
     }
@@ -57,29 +57,47 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<div> --- </div>
+
 <br>
-<div >
-<button type="button" class="btn btn-warning  btn-lg btn-block"><b>Year Total</b></button>
-<button id="yeart" type="button" class="btn btn-warning  btn-lg btn-block">Loading</button>
-
-<button type="button" class="btn btn-warning  btn-lg btn-block"><b>Month Total</b></button>
-<button id="montht" type="button" class="btn btn-warning  btn-lg btn-block">Loading</button>
-
-<button type="button" class="btn btn-warning  btn-lg btn-block"><b>Day Total</b></button>
-<button id="dayt" type="button" class="btn btn-warning  btn-lg btn-block">Loading</button>
-
-<button type="button" class="btn btn-success  btn-lg btn-block"><b>Year Cumulated</b></button>
-<button id="yearc" type="button" class="btn btn-success  btn-lg btn-block">Loading</button>
-
-<button type="button" class="btn btn-success  btn-lg btn-block"><b>Month Cumulated</b></button>
-<button id="monthc" type="button" class="btn btn-success  btn-lg btn-block">Loading</button>
-
-<button type="button" class="btn btn-success  btn-lg btn-block"><b>Day Cumulated</b></button>
-<button id="dayc" type="button" class="btn btn-success  btn-lg btn-block">Loading</button>
-
-
-
+<br>
+<br>
+<div class="row">
+    <div class="col" style="background-color:white;">Total</div>
+	<div class="col" style="background-color:white;">Value</div>
 </div>
+<div class="row">
+    <div class="col" style="background-color:lavender;">Year</div>
+    <div id="yeart" class="col" style="background-color:orange;">Loading</div>
+</div>
+<div class="row">
+    <div class="col" style="background-color:lavender;">Month</div>
+    <div id="montht" class="col" style="background-color:orange;">Loading</div>
+</div>
+<div class="row">
+    <div class="col" style="background-color:lavender;">Day</div>
+    <div id="dayt" class="col" style="background-color:orange;">Loading</div>
+</div>
+<br><br>
+<div class="row">
+    <div class="col" style="background-color:white;">Cumulated</div>
+	<div class="col" style="background-color:white;">Value</div>
+</div>
+<div class="row">
+    <div class="col" style="background-color:lavender;">Year</div>
+    <div id="yearc" class="col" style="background-color:orange;">Loading</div>
+</div>
+
+
+<div class="row">
+    <div class="col" style="background-color:lavender;">Month</div>
+    <div id="monthc" class="col" style="background-color:orange;">Loading</div>
+</div>
+
+<div class="row">
+    <div class="col" style="background-color:lavender;">Day</div>
+    <div id="dayc" class="col" style="background-color:orange;">Loading</div>
+</div>
+
+
 </body>
 </html>
