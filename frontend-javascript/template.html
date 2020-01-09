@@ -1,0 +1,95 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="favicon.ico">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <link rel="manifest" href="/manifest.json">
+    <title>My Full Stack Application with Spring Boot and React</title>
+    <link href="static/css/main.ca1e60f4.chunk.css" rel="stylesheet">
+	<script>
+	var xhr = new XMLHttpRequest();
+xhr.onreadystatechange = function(){
+    if (xhr.readyState === 4){
+        var oglasi = JSON.parse(xhr.responseText);
+        var oglasiHTML = '';
+        for (var i=0; i<oglasi.length; i++){
+        var klasaCijene = '';
+        if (oglasi[i].cijena <100){
+            klasaCijene = 'is-success';
+        }
+        else if (oglasi[i].cijena >= 100 && oglasi[i].cijena < 300){
+            klasaCijene = 'is-info';
+        }
+        else if (oglasi[i].cijena >= 300){
+            klasaCijene = 'is-danger';
+        }
+
+            oglasiHTML += '<p><span class="tag ' + klasaCijene + '">' + oglasi[i].cijena + '</span>' + ' ' + oglasi[i].tekst + '</p>';
+        }
+
+        document.getElementById('oglasi').innerHTML = oglasiHTML;
+    }
+};
+
+xhr.open('GET', 'http://nikola-breznjak.com/_testings/ajax/test2.php');
+xhr.send();
+	</script>
+	
+</head>
+
+<body><noscript>You need to enable JavaScript to run this app.</noscript>
+   <div id="oglasi">
+</div >
+
+   <div id="root">
+        <div class="container">
+            <h1>Instructor Application</h1>
+            <div class="container">
+                <h3>All Courses</h3>
+                <div class="container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Description</th>
+                                <th>Update</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Learn Full stack with Spring Boot and Angular</td>
+                                <td><button class="btn btn-success">Update</button></td>
+                                <td><button class="btn btn-warning">Delete</button></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Learn Full stack with Spring Boot and React</td>
+                                <td><button class="btn btn-success">Update</button></td>
+                                <td><button class="btn btn-warning">Delete</button></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Master Microservices with Spring Boot and Spring Cloud</td>
+                                <td><button class="btn btn-success">Update</button></td>
+                                <td><button class="btn btn-warning">Delete</button></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Deploy Spring Boot Microservices to Cloud with Docker and Kubernetes</td>
+                                <td><button class="btn btn-success">Update</button></td>
+                                <td><button class="btn btn-warning">Delete</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="row"><button class="btn btn-success">Add</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+   </body>
+
+</html>
