@@ -1,14 +1,36 @@
-function draw(cv,text,color) {
-	
+//function draw(cv,text,color,dataURL) {
+function draw(cv,text,dataURL) {	
   console.log("cv "+cv);	
   console.log("text "+text);	
+   console.log("dataURL "+dataURL);	
   var ctx = document.getElementById(cv).getContext('2d');
   ctx.font = '20px';
-  ctx.fillStyle=color;    // color of fill
-  ctx.fillRect(10, 40, 140, 160); // create rectangle  
+//  ctx.fillStyle=color;    // color of fill
+//  ctx.fillRect(10, 40, 140, 160); // create rectangle  
+  
+  var myImg = new Image();
+  myImg.onload = function() {
+		ctx.drawImage(myImg, 0, 0,400,500);
+	};
+myImg.src = dataURL;
+  
+  
+  
+  
  // ctx.strokeText(text, 15, 50);
 }
+ function loadCanvas(dataURL) {
+        var canvas = document.getElementById('myCanvas');
+        var context = canvas.getContext('2d');
 
+        // load image from data url
+        var imageObj = new Image();
+        imageObj.onload = function() {
+          context.drawImage(this, 0, 0);
+        };
+
+        imageObj.src = dataURL;
+      }
 
 function chooseDropDown(index) {
 	//console.log(index);	
@@ -98,8 +120,13 @@ for (let i = 0; i < dataStore.length ; i++) {
   var d = eval("new "+dataStore[i].Von);
  // console.log(monthNames[d.getMonth()]);
   
-//ohne Datum:
-  test1 = test1 + '<div data-type="accordion-section" data-filter="' + dataStore[i].Kategorie + '"><div data-type="accordion-section-title"><div class="calendar-list-event col-md-12 clickable" data-reactid=".0.0.0.5.1:$0.0">			<div class="row" data-reactid=".0.0.0.5.1:$0.0.0">	<div class="col-sm-11 col-xs-10" data-reactid=".0.0.0.5.1:$0.0.0.1">					<canvas class="calendar-list-event__image" id="DC'+i+'" width="70" height="250"></canvas> <script>draw("DC'+i+'","'+dataStore[i].Kategorie +'","'+dataStore[i].Color +'");</script>	<div class="calendar-list-event__details calendar-list-event__details--with-thumbnail" data-reactid=".0.0.0.5.1:$0.0.0.1.1">							<div class="calendar-list-event__name" data-reactid=".0.0.0.5.1:$0.0.0.1.1.0">' + dataStore[i].Thema + '</div>							<div class="calendar-list-event__short-description" data-reactid=".0.0.0.5.1:$0.0.0.1.1.1">' + dataStore[i].Kategorie + '</div>						</div>					</div>				</div>			</div> 		</div>		<div  class="accordion-content" data-type="accordion-section-body">			<div class="calendar-event-details__description col-md-12" data-reactid=".0.0.0.5.1:$1.1.0.0.1">				<div class="calendar-event-details__description__title" data-reactid=".0.0.0.5.1:$1.1.0.0.1.0"></div>				<div  data-reactid=".0.0.0.5.1:$1.1.0.0.1.1"> ' + dataStore[i].Details + '  </div>									</div>								</div></div>';
+//ohne Datum mit Bild:
+//<script>loadCanvas("'+dataStore[i].Image +'");</script>
+// test1 = test1 + '<div data-type="accordion-section" data-filter="' + dataStore[i].Kategorie + '"><div data-type="accordion-section-title"><div class="calendar-list-event col-md-12 clickable" data-reactid=".0.0.0.5.1:$0.0">			<div class="row" data-reactid=".0.0.0.5.1:$0.0.0">	<div class="col-sm-11 col-xs-10" data-reactid=".0.0.0.5.1:$0.0.0.1">		<div class="calendar-list-event__details calendar-list-event__details--with-thumbnail" data-reactid=".0.0.0.5.1:$0.0.0.1.1">						<div class="calendar-list-event__name" data-reactid=".0.0.0.5.1:$0.0.0.1.1.0">' + dataStore[i].Thema + '</div>							<div class="calendar-list-event__short-description" data-reactid=".0.0.0.5.1:$0.0.0.1.1.1">' + dataStore[i].Kategorie + '</div>						</div>					</div>				</div>			</div> 		</div>		<div  class="accordion-content" data-type="accordion-section-body">			<div class="calendar-event-details__description col-md-12" data-reactid=".0.0.0.5.1:$1.1.0.0.1">				<div class="calendar-event-details__description__title" data-reactid=".0.0.0.5.1:$1.1.0.0.1.0"></div>				<div  data-reactid=".0.0.0.5.1:$1.1.0.0.1.1"> ' + dataStore[i].Details + '  </div>									</div>								</div></div>';
+
+  
+//ohne Datum mit Rechteck:
+ test1 = test1 + '<div data-type="accordion-section" data-filter="' + dataStore[i].Kategorie + '"><div data-type="accordion-section-title"><div class="calendar-list-event col-md-12 clickable" data-reactid=".0.0.0.5.1:$0.0">			<div class="row" data-reactid=".0.0.0.5.1:$0.0.0">	<div class="col-sm-11 col-xs-10" data-reactid=".0.0.0.5.1:$0.0.0.1">					<canvas class="calendar-list-event__image" id="DC'+i+'" width="300" height="350"></canvas> <script>draw("DC'+i+'","'+dataStore[i].Kategorie +'","'+dataStore[i].Image +'");</script>	<div class="calendar-list-event__details calendar-list-event__details--with-thumbnail" data-reactid=".0.0.0.5.1:$0.0.0.1.1">							<div class="calendar-list-event__name" data-reactid=".0.0.0.5.1:$0.0.0.1.1.0">' + dataStore[i].Thema + '</div>							<div class="calendar-list-event__short-description" data-reactid=".0.0.0.5.1:$0.0.0.1.1.1">' + dataStore[i].Kategorie + '</div>						</div>					</div>				</div>			</div> 		</div>		<div  class="accordion-content" data-type="accordion-section-body">			<div class="calendar-event-details__description col-md-12" data-reactid=".0.0.0.5.1:$1.1.0.0.1">				<div class="calendar-event-details__description__title" data-reactid=".0.0.0.5.1:$1.1.0.0.1.0"></div>				<div  data-reactid=".0.0.0.5.1:$1.1.0.0.1.1"> ' + dataStore[i].Details + '  </div>									</div>								</div></div>';
 //mit Datum
 //test1 = test1 + '<div data-type="accordion-section" data-filter="' + dataStore[i].Kategorie + '"><div data-type="accordion-section-title"><div class="calendar-list-event col-md-12 clickable" data-reactid=".0.0.0.5.1:$0.0">			<div class="row" data-reactid=".0.0.0.5.1:$0.0.0">				<div class="calendar-list-event__date col-xs-2 col-sm-1" data-reactid=".0.0.0.5.1:$0.0.0.0">					<div class="calendar-list-event__date__day" data-reactid=".0.0.0.5.1:$0.0.0.0.0">' + d.getDate() + '</div>					<div class="calendar-list-event__date__month" data-reactid=".0.0.0.5.1:$0.0.0.0.1">' + monthNames[d.getMonth()] + '</div>				</div>				<div class="col-sm-11 col-xs-10" data-reactid=".0.0.0.5.1:$0.0.0.1">					<canvas class="calendar-list-event__image" id="DC'+i+'" width="70" height="250"></canvas> <script>draw("DC'+i+'","'+dataStore[i].Kategorie +'","'+dataStore[i].Color +'");</script>	<div class="calendar-list-event__details calendar-list-event__details--with-thumbnail" data-reactid=".0.0.0.5.1:$0.0.0.1.1">							<div class="calendar-list-event__name" data-reactid=".0.0.0.5.1:$0.0.0.1.1.0">' + dataStore[i].Thema + '</div>							<div class="calendar-list-event__short-description" data-reactid=".0.0.0.5.1:$0.0.0.1.1.1">' + dataStore[i].Kategorie + '</div>						</div>					</div>				</div>			</div> 		</div>		<div  class="accordion-content" data-type="accordion-section-body">			<div class="calendar-event-details__description col-md-12" data-reactid=".0.0.0.5.1:$1.1.0.0.1">				<div class="calendar-event-details__description__title" data-reactid=".0.0.0.5.1:$1.1.0.0.1.0"></div>				<div  data-reactid=".0.0.0.5.1:$1.1.0.0.1.1"> ' + dataStore[i].Details + '  </div>									</div>								</div></div>';
 
