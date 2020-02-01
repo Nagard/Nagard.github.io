@@ -8,9 +8,23 @@ function draw(cv,text,dataURL) {
 //  ctx.fillStyle=color;    // color of fill
 //  ctx.fillRect(10, 40, 140, 160); // create rectangle  
   
+var rectX = 50;
+var rectY = 50;
+var rectWidth = 200;
+var rectHeight = 200;
+var cornerRadius = 80;
+
+
+
+
+  
+  
+  
   var myImg = new Image();
   myImg.onload = function() {
-		ctx.drawImage(myImg, 0, 0,400,500);
+		ctx.drawImage(myImg, 0, 0,300,300);  
+		//ctx.drawImage(myImg, 0, 0,400,500);  
+
 	};
 myImg.src = dataURL;
   
