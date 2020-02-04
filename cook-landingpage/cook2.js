@@ -107,9 +107,9 @@ $.ajax({
 //  url: 'http://localhost:3000/1WV-qIba3BuAVLdeGw7uDOtA6IGe4LVmDato_XAn1Hn4',
 //  url: 'https://jodler.herokuapp.com/1WV-qIba3BuAVLdeGw7uDOtA6IGe4LVmDato_XAn1Hn4',
 
-  //LAST  url: 'https://jodler.herokuapp.com/'+gsheet,
+url: 'https://jodler.herokuapp.com/cook',
 
-  url: 'localhost:4000/cook',
+ // url: 'http://localhost:4000/cook',
   
 //LOKAL	 url: 'http://localhost:3001/getentries',
 //hier kommt sheet.best
