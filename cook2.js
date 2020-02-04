@@ -106,7 +106,11 @@ $.ajax({
   // url: 'http://localhost:3000/2PACX-1vTKLd22vDKaau6S2nLYMo2BJAG0C_8Udv6QDbV5sL3NLIFhcvO10ICDFcOpOW0RXrBtPq87MV7Ak_cq',
 //  url: 'http://localhost:3000/1WV-qIba3BuAVLdeGw7uDOtA6IGe4LVmDato_XAn1Hn4',
 //  url: 'https://jodler.herokuapp.com/1WV-qIba3BuAVLdeGw7uDOtA6IGe4LVmDato_XAn1Hn4',
-  url: 'https://jodler.herokuapp.com/'+gsheet,
+
+url: 'https://jodler.herokuapp.com/cook'+gsheet,
+
+ // url: 'http://localhost:4000/cook',
+  
 //LOKAL	 url: 'http://localhost:3001/getentries',
 //hier kommt sheet.best
   //url: 'https://sheet.best/api/sheet/fc2e6be0-adaf-4228-adce-279d0408c6c6',
