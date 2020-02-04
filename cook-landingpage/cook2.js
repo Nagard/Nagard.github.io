@@ -135,7 +135,11 @@ for (let i = 0; i < dataStore.length ; i++) {
   
   //Hack da cuba Datumswert so ausliefert
   // Von: 'Date(2019,8,27)',
-  var d = eval("new "+dataStore[i].Von);
+ 
+// NUR WENN DATUM und CUBA 
+//var d = eval("new "+dataStore[i].Von);
+
+
  // console.log(monthNames[d.getMonth()]);
   
 //ohne Datum mit Bild:
