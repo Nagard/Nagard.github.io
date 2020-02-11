@@ -87,9 +87,10 @@ function chooseDropDown(index) {
     }
 	
 
-function replaceDummies(_details,_cookcoachid,_thema){
+function replaceDummies(_details,_cookcoachid,_eventid,_thema){
 	
 	  var res = _details.replace("##cookcoachid##",_cookcoachid);
+	  res = res.replace("##eventid##",_eventid);
 	  res=res.replace("##thema##",_thema); 
 	  return res;
 }
@@ -171,7 +172,7 @@ test1 = test1 + '");</script>	<div class="calendar-list-event__details calendar-
 test1 = test1 + dataStore[i].thema 
 test1 = test1 + '</div>							<div class="calendar-list-event__short-description" data-reactid=".0.0.0.5.1:$0.0.0.1.1.1">' 
 test1 = test1 + dataStore[i].kategorie + '</div>						</div>					</div>				</div>			</div> 		</div>		<div  class="accordion-content" data-type="accordion-section-body">			<div class="calendar-event-details__description col-md-12" data-reactid=".0.0.0.5.1:$1.1.0.0.1">				<div class="calendar-event-details__description__title" data-reactid=".0.0.0.5.1:$1.1.0.0.1.0"></div>				<div  data-reactid=".0.0.0.5.1:$1.1.0.0.1.1"> ' 
-test1 = test1 + replaceDummies(dataStore[i].details, dataStore[i].cookcoachid,dataStore[i].thema)
+test1 = test1 + replaceDummies(dataStore[i].details, dataStore[i].cookcoachid,dataStore[i].eventid,dataStore[i].thema)
 test1 = test1 + '  </div>									</div>								</div></div>';
  
  
