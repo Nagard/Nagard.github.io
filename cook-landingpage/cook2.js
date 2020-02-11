@@ -86,6 +86,14 @@ function chooseDropDown(index) {
       return decodeURIComponent(results[2].replace(/\+/g, " "));
     }
 	
+
+function replaceDummies(_details,_cookcoachid,_thema){
+	
+	  var res = _details.replace("##cookcoachid##",_cookcoachid);
+	  res=res.replace("##thema##",_thema); 
+	  return res;
+}
+
 	
 	
 var dataStore = "";
@@ -149,9 +157,22 @@ for (let i = 0; i < dataStore.length ; i++) {
   
 //ohne Datum mit Rechteck:
 
+//Alles in einer Zeile 
+//test1 = test1 + '<div data-type="accordion-section" data-filter="' + dataStore[i].kategorie + '"><div data-type="accordion-section-title"><div class="calendar-list-event col-md-12 clickable" data-reactid=".0.0.0.5.1:$0.0">			<div class="row" data-reactid=".0.0.0.5.1:$0.0.0">	<div class="col-sm-11 col-xs-10" data-reactid=".0.0.0.5.1:$0.0.0.1">					<canvas class="calendar-list-event__image" id="DC'+i+'" width="300" height="350"></canvas> <script>draw("DC'+i+'","'+dataStore[i].kategorie +'","'+dataStore[i].image +'");</script>	<div class="calendar-list-event__details calendar-list-event__details--with-thumbnail" data-reactid=".0.0.0.5.1:$0.0.0.1.1">							<div class="calendar-list-event__name" data-reactid=".0.0.0.5.1:$0.0.0.1.1.0">' + dataStore[i].thema + '</div>							<div class="calendar-list-event__short-description" data-reactid=".0.0.0.5.1:$0.0.0.1.1.1">' + dataStore[i].kategorie + '</div>						</div>					</div>				</div>			</div> 		</div>		<div  class="accordion-content" data-type="accordion-section-body">			<div class="calendar-event-details__description col-md-12" data-reactid=".0.0.0.5.1:$1.1.0.0.1">				<div class="calendar-event-details__description__title" data-reactid=".0.0.0.5.1:$1.1.0.0.1.0"></div>				<div  data-reactid=".0.0.0.5.1:$1.1.0.0.1.1"> ' + dataStore[i].details + '  </div>									</div>								</div></div>';
 
- test1 = test1 + '<div data-type="accordion-section" data-filter="' + dataStore[i].kategorie + '"><div data-type="accordion-section-title"><div class="calendar-list-event col-md-12 clickable" data-reactid=".0.0.0.5.1:$0.0">			<div class="row" data-reactid=".0.0.0.5.1:$0.0.0">	<div class="col-sm-11 col-xs-10" data-reactid=".0.0.0.5.1:$0.0.0.1">					<canvas class="calendar-list-event__image" id="DC'+i+'" width="300" height="350"></canvas> <script>draw("DC'+i+'","'+dataStore[i].kategorie +'","'+dataStore[i].image +'");</script>	<div class="calendar-list-event__details calendar-list-event__details--with-thumbnail" data-reactid=".0.0.0.5.1:$0.0.0.1.1">							<div class="calendar-list-event__name" data-reactid=".0.0.0.5.1:$0.0.0.1.1.0">' + dataStore[i].thema + '</div>							<div class="calendar-list-event__short-description" data-reactid=".0.0.0.5.1:$0.0.0.1.1.1">' + dataStore[i].kategorie + '</div>						</div>					</div>				</div>			</div> 		</div>		<div  class="accordion-content" data-type="accordion-section-body">			<div class="calendar-event-details__description col-md-12" data-reactid=".0.0.0.5.1:$1.1.0.0.1">				<div class="calendar-event-details__description__title" data-reactid=".0.0.0.5.1:$1.1.0.0.1.0"></div>				<div  data-reactid=".0.0.0.5.1:$1.1.0.0.1.1"> ' + dataStore[i].details + '  </div>									</div>								</div></div>';
 
+//Alles in n Zeilen 
+test1 = test1 + '<div data-type="accordion-section" data-filter="' 
+
+test1 = test1 + dataStore[i].kategorie 
+test1 = test1 + '"><div data-type="accordion-section-title"><div class="calendar-list-event col-md-12 clickable" data-reactid=".0.0.0.5.1:$0.0">			<div class="row" data-reactid=".0.0.0.5.1:$0.0.0">	<div class="col-sm-11 col-xs-10" data-reactid=".0.0.0.5.1:$0.0.0.1">					<canvas class="calendar-list-event__image" id="DC'+i+'" width="300" height="350"></canvas> <script>draw("DC'+i+'","'
+test1 = test1 + dataStore[i].kategorie +'","'+dataStore[i].bildlink 
+test1 = test1 + '");</script>	<div class="calendar-list-event__details calendar-list-event__details--with-thumbnail" data-reactid=".0.0.0.5.1:$0.0.0.1.1">							<div class="calendar-list-event__name" data-reactid=".0.0.0.5.1:$0.0.0.1.1.0">' 
+test1 = test1 + dataStore[i].thema 
+test1 = test1 + '</div>							<div class="calendar-list-event__short-description" data-reactid=".0.0.0.5.1:$0.0.0.1.1.1">' 
+test1 = test1 + dataStore[i].kategorie + '</div>						</div>					</div>				</div>			</div> 		</div>		<div  class="accordion-content" data-type="accordion-section-body">			<div class="calendar-event-details__description col-md-12" data-reactid=".0.0.0.5.1:$1.1.0.0.1">				<div class="calendar-event-details__description__title" data-reactid=".0.0.0.5.1:$1.1.0.0.1.0"></div>				<div  data-reactid=".0.0.0.5.1:$1.1.0.0.1.1"> ' 
+test1 = test1 + replaceDummies(dataStore[i].details, dataStore[i].cookcoachid,dataStore[i].thema)
+test1 = test1 + '  </div>									</div>								</div></div>';
  
  
  
