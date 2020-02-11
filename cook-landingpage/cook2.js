@@ -97,6 +97,7 @@ function replaceDummies(_details,_cookcoachid,_eventid,_thema){
 
 function ajaxPost(myForm){
 //var formData = $("#myform").serializeArray();
+console.log("bin in ajaxPost(...)");
 var formData = $(myForm).serializeArray();
 var URL = $(myForm).attr("action");
 $.post(URL,
