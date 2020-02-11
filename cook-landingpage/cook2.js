@@ -108,9 +108,9 @@ $.ajax({
   url: URL,
   data: formData,
   async: false,
-  dataType: 'json',
+//  dataType: 'json',
   success: function (data) {
-    console.log(data);
+    console.log("success zurück "+data);
   }
 });
 
