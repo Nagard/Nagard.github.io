@@ -95,7 +95,21 @@ function replaceDummies(_details,_cookcoachid,_eventid,_thema){
 	  return res;
 }
 
-	
+function ajaxPost(myForm){
+//var formData = $("#myform").serializeArray();
+var formData = $(myform).serializeArray();
+var URL = $(myform).attr("action");
+$.post(URL,
+    formData,
+    function(data, textStatus, jqXHR)
+    {
+       console.log(data);    
+    }).fail(function(jqXHR, textStatus, errorThrown) 
+    {
+ 
+    });
+
+}	
 	
 var dataStore = "";
 const monthNames = ["January", "February", "March", "April", "May", "June",
