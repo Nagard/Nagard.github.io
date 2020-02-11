@@ -109,8 +109,8 @@ $.ajax({
   data: formData,
   async: false,
 //  dataType: 'json',
-  success: function (data) {
-    console.log("success zurück "+data);
+  success: function (responseX) {
+    console.log("success zurück "+responseX);
   }
 });
 
