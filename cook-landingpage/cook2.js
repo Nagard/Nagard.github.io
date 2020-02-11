@@ -100,7 +100,10 @@ function ajaxPost(myForm){
 console.log("bin in ajaxPost(...)");
 var formData = $(myForm).serializeArray();
 var URL = $(myForm).attr("action");
-$.post(URL,
+console.log(formData);
+console.log(URL);
+
+$.POST(URL,
     formData,
     function(data, textStatus, jqXHR)
     {
