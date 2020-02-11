@@ -103,17 +103,19 @@ var URL = $(myForm).attr("action");
 console.log(formData);
 console.log(URL);
 
-$.POST(URL,
-    formData,
-    function(data, textStatus, jqXHR)
-    {
-       alert(data);    
-    }).fail(function(jqXHR, textStatus, errorThrown) 
-    {
- 
-    });
+$.ajax({
+  type: 'POST',
+  url: URL,
+  data: formData,
+  async: false,
+  dataType: 'json',
+  success: function (data) {
+    console.log(data);
+  }
+});
 
-}	
+}
+	
 	
 var dataStore = "";
 const monthNames = ["January", "February", "March", "April", "May", "June",
