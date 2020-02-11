@@ -104,7 +104,7 @@ $.post(URL,
     formData,
     function(data, textStatus, jqXHR)
     {
-       console.log(data);    
+       alert(data);    
     }).fail(function(jqXHR, textStatus, errorThrown) 
     {
  
