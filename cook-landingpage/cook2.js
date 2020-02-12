@@ -101,8 +101,8 @@ function replaceDummies(_details,_cookcoachid,_eventid,_thema){
 function ajaxPost(myForm){
 //var formData = $("#myform").serializeArray();
 console.log("bin in ajaxPost(...)");
-var formData = $(myForm).serializeArray();
-var URL = $(myForm).attr("action");
+var formData = $("#"+myForm).serializeArray();
+var URL = $("#"+myForm).attr("action");
 console.log(formData);
 console.log(URL);
 
@@ -114,6 +114,7 @@ $.ajax({
 //  dataType: 'json',
   success: function (responseX) {
 	$(myForm).hide(); 
+	console.log("#feedback"+myForm);
 	$("#feedback"+myForm).html="success zurück "+responseX;
 	$("#feedback"+myForm).show(); 	
   //  console.log("success zurück "+responseX);
