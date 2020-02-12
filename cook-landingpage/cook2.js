@@ -115,7 +115,8 @@ $.ajax({
   success: function (responseX) {
 	$("#"+myForm).hide(); 
 	console.log("#feedback"+myForm);
-	$("#feedback"+myForm).html("Hallo "+responseX +", wir haben Ihnen eine email zugesandt. Darin ist ein Bestätigungslink, den Sie bitte clicken müssen, damit Ihr Auftrag tatsächlich bearbeitet wird.");
+	console.log(responseX);
+	$("#feedback"+myForm).html("Hallo "+responseX.vorname +" "+ responseX.nachname+", wir haben Ihnen eine email zugesandt. Darin ist ein Bestätigungslink, den Sie bitte clicken müssen, damit Ihr Auftrag tatsächlich bearbeitet wird.");
 	$("#feedback"+myForm).show(); 	
   //  console.log("success zurück "+responseX);
   }
