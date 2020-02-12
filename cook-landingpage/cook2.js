@@ -112,7 +112,10 @@ $.ajax({
   async: false,
 //  dataType: 'json',
   success: function (responseX) {
-    console.log("success zurück "+responseX);
+	$(myForm).hide(); 
+	$("feedback"+myForm).html("success zurück "+responseX);
+	$("feedback"+myForm).show(); 	
+  //  console.log("success zurück "+responseX);
   }
 });
 
