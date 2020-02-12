@@ -114,8 +114,8 @@ $.ajax({
 //  dataType: 'json',
   success: function (responseX) {
 	$(myForm).hide(); 
-	$("feedback"+myForm).html("success zurück "+responseX);
-	$("feedback"+myForm).show(); 	
+	$("#feedback"+myForm).html("success zurück "+responseX);
+	$("#feedback"+myForm).show(); 	
   //  console.log("success zurück "+responseX);
   }
 });
