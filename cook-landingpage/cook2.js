@@ -111,11 +111,13 @@ $.ajax({
   url: URL,
   data: formData,
   async: false,
-//  dataType: 'json',
+  dataType: 'json',
   success: function (responseX) {
 	$("#"+myForm).hide(); 
 	console.log("#feedback"+myForm);
-	console.log(responseX);
+	console.log("responseX "+responseX);
+	var responseXJSON=JSON.parse(responseX)
+	console.log("responseXJSON.vorname "+responseXJSON.vorname);
 	$("#feedback"+myForm).html("Hallo "+responseX.vorname +" "+ responseX.nachname+", wir haben Ihnen eine email zugesandt. Darin ist ein Bestätigungslink, den Sie bitte clicken müssen, damit Ihr Auftrag tatsächlich bearbeitet wird.");
 	$("#feedback"+myForm).show(); 	
   //  console.log("success zurück "+responseX);
