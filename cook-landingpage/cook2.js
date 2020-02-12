@@ -113,7 +113,7 @@ $.ajax({
   async: false,
 //  dataType: 'json',
   success: function (responseX) {
-	$(myForm).hide(); 
+	$("#"+myForm).hide(); 
 	console.log("#feedback"+myForm);
 	$("#feedback"+myForm).html="success zurück "+responseX;
 	$("#feedback"+myForm).show(); 	
