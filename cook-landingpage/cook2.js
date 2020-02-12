@@ -94,6 +94,7 @@ function replaceDummies(_details,_cookcoachid,_eventid,_thema){
 	  res=res.replace("##thema##",_thema); 
 	   res=res.replace("##formid##",_cookcoachid+_eventid); 
 	    res=res.replace("##formid##",_cookcoachid+_eventid); 
+		 res=res.replace("##formid##",_cookcoachid+_eventid); 
 	  return res;
 }
 
