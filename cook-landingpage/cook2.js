@@ -114,7 +114,7 @@ $.ajax({
 //  dataType: 'json',
   success: function (responseX) {
 	$(myForm).hide(); 
-	$("#feedback"+myForm).text("success zurück "+responseX);
+	$("#feedback"+myForm).html="success zurück "+responseX;
 	$("#feedback"+myForm).show(); 	
   //  console.log("success zurück "+responseX);
   }
