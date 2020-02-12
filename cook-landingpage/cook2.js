@@ -115,7 +115,7 @@ $.ajax({
   success: function (responseX) {
 	$("#"+myForm).hide(); 
 	console.log("#feedback"+myForm);
-	$("#feedback"+myForm).html="success zurück "+responseX;
+	$("#feedback"+myForm).html("success zurück "+responseX);
 	$("#feedback"+myForm).show(); 	
   //  console.log("success zurück "+responseX);
   }
