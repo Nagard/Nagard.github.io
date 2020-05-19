@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,11 +22,18 @@
 
 <body>
 <div class="w3-container">
-  <h2>familyBoard</h2>
+  <h2 id="titel" ></h2>
 
    <img  src="https://unsplash.com/photos/SIOdjcYotms/download?force=true&w=640"  class="responsive" style="width:100%;">
+    <div id="data" >
 
-  <div class="w3-panel w3-light-grey">
+	</div>  
+  
+</div>
+</body>
+
+<!--
+<div class="w3-panel w3-light-grey">
    <p onclick="location.href = 'https://nagard.github.io/sheetinaction/sheet.html?gsheet=1M5_n6JZT8KjAjJLuy429AsSAcpyqTc2sKztEBJtoUZI&titel=Termine';">Termine</p>
   </div>
 
@@ -48,6 +56,50 @@
   <div class="w3-panel w3-light-grey">
    <p onclick="location.href = 'https://nagard.github.io/sheetinaction/sheet.html?gsheet=1M5_n6JZT8KjAjJLuy429AsSAcpyqTc2sKztEBJtoUZI&titel=Ferien';">Ferien</p>
   </div>
-</div>
-</body>
+-->
+
+<script>
+ function getUrlParameterByName(name, url) {
+      if (!url) url = window.location.href;
+      name = name.replace(/[\[\]]/g, "\\$&");
+      var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"), results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+
+function refresh() {
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState === 4) {
+				var data = JSON.parse(xhr.responseText);
+				var dataHTML = '';
+				for (var i = 0; i < data.length; i++) {
+					var classText = '';
+					dataHTML += `<div class="w3-panel w3-light-grey"> 
+						<p onclick="location.href =\'https://nagard.github.io/sheetinaction/sheet.html?gsheet=${data[i].bildlink}&titel=${data[i].thema}\';">
+						 ${data[i].thema}
+						</p></div>`
+
+				}
+
+				document.getElementById('data').innerHTML = dataHTML;
+			}
+		};
+
+		//GET Request for Navigation Information
+		xhr.open('GET', `https://jodler.herokuapp.com/cook/${gsheet}`);
+
+		xhr.send();
+	}
+
+
+//family.html?gsheet=1hlvugRIqw52UbGKBQhCnmO-3u36kFYDtjAxQHKOJupc&titel=familyBoard
+var gsheet = getUrlParameterByName('gsheet', window.location.href) ;
+
+var sheettitel = getUrlParameterByName('titel', window.location.href) ;
+document.getElementById('titel').innerHTML = sheettitel;
+	refresh();
+</script>
+
 </html>
